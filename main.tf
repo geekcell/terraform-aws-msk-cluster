@@ -1,11 +1,22 @@
 /**
  * # Terraform AWS MSK Cluster Module
  *
- * Terraform module which creates a MSK Cluster. The focus on this module
- * lies within it's simplicity by providing default values that should make
- * sense for most use cases.
+ * This Terraform module provides a preconfigured solution for setting up
+ * AWS MSK clusters in your AWS account. With this module, you can easily and
+ * efficiently create and manage MSK clusters with advanced features such as
+ * encryption and high availability. Our team has extensive experience working
+ * with AWS MSK and has optimized this module to provide the best possible
+ * experience for users.
  *
- * It also makes use of the latest Terraform
+ * By using this Terraform module, you can save time and effort in setting up
+ * and managing your MSK clusters, as well as ensure that your data is secure
+ * and protected. The module is configured to ensure that topics are never
+ * deleted, replication is set to at least 3, and retention time is set to
+ * unlimited. The module encapsulates all necessary configurations, making it
+ * easy to use and integrate into your existing AWS environment. Whether you
+ * are just getting started with AWS MSK or looking for a more efficient way
+ * to manage your clusters, this Terraform module provides a preconfigured
+ * solution with advanced features such as encryption and high availability.
  */
 resource "aws_msk_cluster" "main" {
   cluster_name           = var.cluster_name
