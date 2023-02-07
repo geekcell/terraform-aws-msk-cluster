@@ -12,6 +12,7 @@ variable "cluster_name" {
 }
 
 variable "enable_appautoscaling" {
+  default     = false
   description = "Enable or disable MSK App Autoscaling."
   type        = bool
 }
