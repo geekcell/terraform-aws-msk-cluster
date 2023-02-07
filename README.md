@@ -73,7 +73,7 @@ It also makes use of the latest Terraform
 - resource.aws_msk_cluster.main (main.tf#10)
 
 # Examples
-### Full
+### basic-example
 ```hcl
 module "basic-example" {
   source          = "../../"
@@ -83,6 +83,20 @@ module "basic-example" {
   kafka_version   = "3.2.0"
   security_groups = ["sg-12345678"]
   volume_size     = 10
+}
+```
+### with-autoscaling
+```hcl
+module "with-autoscaling" {
+  source          = "../../"
+  client_subnets  = ["subnet-12345678", "subnet-87654321"]
+  cluster_name    = "cluster1"
+  instance_type   = "kafka.t3.small"
+  kafka_version   = "3.2.0"
+  security_groups = ["sg-12345678"]
+  volume_size     = 10
+
+  enable_appautoscaling = true
 }
 ```
 <!-- END_TF_DOCS -->
