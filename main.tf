@@ -46,14 +46,14 @@ resource "aws_msk_cluster" "main" {
 }
 
 module "msk_configuration" {
-  source        = "./msk_configuration"
+  source        = "./modules/msk_configuration"
   kafka_version = var.kafka_version
   name          = var.cluster_name
 }
 
 module "appautoscaling" {
   count        = var.enable_appautoscaling ? 1 : 0
-  source       = "./appautoscaling"
+  source       = "./modules/appautoscaling"
   cluster_arn  = aws_msk_cluster.main.arn
   cluster_name = var.cluster_name
 }
