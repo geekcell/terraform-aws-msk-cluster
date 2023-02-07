@@ -20,9 +20,13 @@ content: |-
   {{- end }}
 
   # Examples
-    ### Full
+    ### basic-example
     ```hcl
     {{ include "examples/basic-example/main.tf" }}
+    ```
+    ### with-autoscaling
+    ```hcl
+    {{ include "examples/with-autoscaling/main.tf" }}
     ```
 
 output:

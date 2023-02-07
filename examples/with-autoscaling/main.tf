@@ -1,4 +1,4 @@
-module "basic-example" {
+module "with-autoscaling" {
   source          = "../../"
   client_subnets  = ["subnet-12345678", "subnet-87654321"]
   cluster_name    = "cluster1"
@@ -6,4 +6,6 @@ module "basic-example" {
   kafka_version   = "3.2.0"
   security_groups = ["sg-12345678"]
   volume_size     = 10
+
+  enable_appautoscaling = true
 }
