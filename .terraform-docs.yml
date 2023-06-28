@@ -1,10 +1,14 @@
 formatter: "md table"
 header-from: main.tf
 
-content: |-
-  {{ include "docs/logo.md" }}
+recursive:
+  # Enable this if your module has submodules
+  enabled: false
 
-  {{ include "docs/badges.md" }}
+content: |-
+  {{ include "docs/10-header.md" }}
+
+  {{ include "docs/20-badges.md" }}
 
   {{ .Header }}
 
@@ -20,11 +24,11 @@ content: |-
   {{- end }}
 
   # Examples
-    ### basic-example
+    ### Basic Example
     ```hcl
     {{ include "examples/basic-example/main.tf" }}
     ```
-    ### with-autoscaling
+    ### With Autoscaling
     ```hcl
     {{ include "examples/with-autoscaling/main.tf" }}
     ```
