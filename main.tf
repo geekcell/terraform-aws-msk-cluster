@@ -1,11 +1,8 @@
 /**
  * # Terraform AWS MSK Cluster Module
  *
- * Terraform module which creates a MSK Cluster. The focus on this module
- * lies within it's simplicity by providing default values that should make
- * sense for most use cases.
- *
- * It also makes use of the latest Terraform
+ * Terraform module which creates a MSK Cluster. The focus on this module lies within it's simplicity by providing
+ * default values that should make sense for most use cases.
  */
 resource "aws_msk_cluster" "main" {
   cluster_name           = var.cluster_name
@@ -30,14 +27,14 @@ resource "aws_msk_cluster" "main" {
   }
 
   encryption_info {
-    encryption_at_rest_kms_key_arn = module.kms["storage"].key_arn
+    encryption_at_rest_kms_key_arn = module.kms.key_arn
   }
 
   logging_info {
     broker_logs {
       cloudwatch_logs {
         enabled   = true
-        log_group = module.cloudwatch_log_group["broker_logs"].name
+        log_group = module.cloudwatch_log_group.name
       }
     }
   }
@@ -46,27 +43,34 @@ resource "aws_msk_cluster" "main" {
 }
 
 module "msk_configuration" {
-  source        = "./msk_configuration"
+  source = "./modules/msk_configuration"
+
   kafka_version = var.kafka_version
   name          = var.cluster_name
 }
 
 module "appautoscaling" {
-  count        = var.enable_appautoscaling ? 1 : 0
-  source       = "./appautoscaling"
+  count  = var.enable_appautoscaling ? 1 : 0
+  source = "./modules/appautoscaling"
+
   cluster_arn  = aws_msk_cluster.main.arn
   cluster_name = var.cluster_name
 }
 
 module "kms" {
-  for_each = toset(["storage"])
-  source   = "github.com/geekcell/terraform-aws-kms?ref=v1.0"
-  alias    = format("alias/msk/cluster/%s/%s", var.cluster_name, each.key)
+  source  = "geekcell/kms/aws"
+  version = ">= 1.0.0, < 2.0.0"
+
+  alias = "alias/msk/cluster/${var.cluster_name}/storage"
+  tags  = var.tags
 }
 
 module "cloudwatch_log_group" {
-  for_each          = toset(["broker_logs"])
-  source            = "github.com/geekcell/terraform-aws-cloudwatch-log-group?ref=v1.0"
-  name              = format("/msk/cluster/%s/%s", var.cluster_name, each.key)
+  source  = "geekcell/cloudwatch-log-group/aws"
+  version = ">= 1.0.0, < 2.0.0"
+
+  name              = "/msk/cluster/${var.cluster_name}/broker-logs"
   retention_in_days = 30
+
+  tags = var.tags
 }

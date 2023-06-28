@@ -1,5 +1,5 @@
 <!-- BEGIN_TF_DOCS -->
-[![Geek Cell GmbH](https://raw.githubusercontent.com/geekcell/template-terraform-module/main/docs/assets/logo.svg)](https://www.geekcell.io/)
+[![Geek Cell GmbH](https://raw.githubusercontent.com/geekcell/.github/main/geekcell-github-banner.png)](https://www.geekcell.io/)
 
 ### Code Quality
 [![License](https://img.shields.io/github/license/geekcell/terraform-aws-msk-cluster)](https://github.com/geekcell/terraform-aws-msk-cluster/blob/master/LICENSE)
@@ -7,6 +7,9 @@
 [![Release](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/release.yaml/badge.svg)](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/release.yaml)
 [![Validate](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/validate.yaml/badge.svg)](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/validate.yaml)
 [![Lint](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/linter.yaml/badge.svg)](https://github.com/geekcell/terraform-aws-msk-cluster/actions/workflows/linter.yaml)
+
+<!--
+Comment in if Bridgecrew is configured
 
 ### Security
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/geekcell/terraform-aws-msk-cluster/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=geekcell%2Fterraform-aws-msk-cluster&benchmark=INFRASTRUCTURE+SECURITY)
@@ -33,13 +36,12 @@
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/geekcell/terraform-aws-msk-cluster/hipaa)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=geekcell%2Fterraform-aws-msk-cluster&benchmark=HIPAA)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/geekcell/terraform-aws-msk-cluster/fedramp_moderate)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=geekcell%2Fterraform-aws-msk-cluster&benchmark=FEDRAMP+%28MODERATE%29)
 
+-->
+
 # Terraform AWS MSK Cluster Module
 
-Terraform module which creates a MSK Cluster. The focus on this module
-lies within it's simplicity by providing default values that should make
-sense for most use cases.
-
-It also makes use of the latest Terraform
+Terraform module which creates a MSK Cluster. The focus on this module lies within it's simplicity by providing
+default values that should make sense for most use cases.
 
 ## Inputs
 
@@ -66,14 +68,14 @@ It also makes use of the latest Terraform
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.4 |
 
 ## Resources
 
-- resource.aws_msk_cluster.main (main.tf#10)
+- resource.aws_msk_cluster.main (main.tf#7)
 
 # Examples
-### basic-example
+### Basic Example
 ```hcl
 module "basic-example" {
   source          = "../../"
@@ -85,7 +87,7 @@ module "basic-example" {
   volume_size     = 10
 }
 ```
-### with-autoscaling
+### With Autoscaling
 ```hcl
 module "with-autoscaling" {
   source          = "../../"
